@@ -14,7 +14,7 @@ void assignColorSynchronous(int threadIndex)
     {
         std::lock_guard<std::mutex> lock(mtx);
         colors[threadIndex] = selectedColor;
-        std::cout << "Ñèíõðîííûé: Ïîòîê " << threadIndex << " çàïèñàë öâåò: ";
+        std::cout << "Ð¡Ð¸Ð½Ñ…Ñ€Ð¾Ð½Ð½Ñ‹Ð¹: ÐŸÐ¾Ñ‚Ð¾Ðº " << threadIndex << " Ð·Ð°Ð¿Ð¸ÑÐ°Ð» Ñ†Ð²ÐµÑ‚: ";
         for(const auto& color : colors) {
             std::cout << color << " ";
         }
@@ -28,7 +28,7 @@ void assignColorAsynchronous(int threadIndex)
     {
         std::lock_guard<std::mutex> lock(mtx);
         colors[threadIndex] = selectedColor;
-        std::cout << "Àñèíõðîííûé: Ïîòîê " << threadIndex << " çàïèñàë öâåò: ";
+        std::cout << "ÐÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð½Ñ‹Ð¹: ÐŸÐ¾Ñ‚Ð¾Ðº " << threadIndex << " Ð·Ð°Ð¿Ð¸ÑÐ°Ð» Ñ†Ð²ÐµÑ‚: ";
         for(const auto& color : colors) 
         {
             std::cout << color << " ";
@@ -46,7 +46,7 @@ int main()
     }
     auto endTimeSync = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> timeSync = endTimeSync - startTimeSync;
-    std::cout << "Âðåìÿ ñèíõðîííîé çàïèñè: " << timeSync.count() << " ñåêóíä" << std::endl;
+    std::cout << "Ð’Ñ€ÐµÐ¼Ñ ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð½Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸: " << timeSync.count() << " ÑÐµÐºÑƒÐ½Ð´" << std::endl;
     auto startTimeAsync = std::chrono::high_resolution_clock::now();
     std::vector<std::future<void>> futures;
     for (int i = 0; i < NUM_THREADS; ++i) 
@@ -58,6 +58,6 @@ int main()
     }
     auto endTimeAsync = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> timeAsync = endTimeAsync - startTimeAsync;
-    std::cout << "Âðåìÿ àñèíõðîííîé çàïèñè: " << timeAsync.count() << " ñåêóíä" << std::endl;
+    std::cout << "Ð’Ñ€ÐµÐ¼Ñ Ð°ÑÐ¸Ð½Ñ…Ñ€Ð¾Ð½Ð½Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸: " << timeAsync.count() << " ÑÐµÐºÑƒÐ½Ð´" << std::endl;
     return 0;
 }
